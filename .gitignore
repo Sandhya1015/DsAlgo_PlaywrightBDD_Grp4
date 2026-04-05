@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Generated spec files
+.features-gen/
+
+# Test results
+test-results/
+playwright-report/
+
+# Environment variables
+.env
