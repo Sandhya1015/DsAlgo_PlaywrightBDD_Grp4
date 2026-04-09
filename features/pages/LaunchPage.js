@@ -10,9 +10,7 @@ class LaunchPage{
     this.content          = page.locator('.content');
     }
 
-
-    //Methods
-
+ //Methods
  //  Background step User navigates to dsAlgo portal
  async navToDsAlgo()
  {

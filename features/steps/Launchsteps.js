@@ -4,13 +4,13 @@ const { LaunchPage }        = require('../pages/LaunchPage');
 
 // Background step
 Given('User navigates to dsAlgo portal', async function ({ page }) {
-  this.launchPage = new LaunchPage(page);  // ← create ONCE
+  this.launchPage = new LaunchPage(page);  // creating instance of launch page
   await this.launchPage.navToDsAlgo();
 });
 
 // Scenario 1
 Then('User should be able to land on dsAlgo portal', async function ({ page }) {
-  await this.launchPage.verifyDsAlgo();    // ← reuse this.launchPage
+  await this.launchPage.verifyDsAlgo();    // reuse this.launchPage
 });
 
 // Scenario 2
