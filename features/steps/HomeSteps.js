@@ -15,7 +15,7 @@ Then('User should be able to land on Home page', async function ({ page }) {
   await this.homePage.verifyHomePage();
 });
 
-//  Non Functional - Dropdown ─
+//  Non Functional - Dropdown
 
 Then('User should see Data Structures dropdown in Home page', async function ({ page }) {
   await this.homePage.verifyDropdownVisible();
@@ -59,7 +59,7 @@ Then('User should see Sign In link in Home page', async function ({ page }) {
   await this.homePage.verifySignInLink();
 });
 
-//  Non Functional - Card Titles ─
+//  Non Functional - Card Titles 
 
 Then('User should see Data Structures Introduction card text in Home page', async function ({ page }) {
   await this.homePage.verifyDsCardTitle();
@@ -179,13 +179,13 @@ When('Unregistered user clicks Get Started button in Graph card', async function
   await this.homePage.clickGraphCardButton();
 });
 
-//  Functional - Error Message ─
+//  Functional - Error Message
 
 Then('User should see error message {string}', async function ({ page }, message) {
   await this.homePage.verifyErrorMessage(message);
 });
 
-//  Functional - Registered - Login and Click ─
+//  Functional - Registered - Login and Click 
 
 When('Registered user clicks Get Started button in Data Structures Introduction card', async function ({ page }) {
   await this.homePage.loginAsRegisteredUser();

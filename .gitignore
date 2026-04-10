@@ -10,3 +10,10 @@ playwright-report/
 
 # Environment variables
 .env
+
+# Allure reports
+allure-results/
+allure-report/
+
+# Generated feature files
+.features-gen/

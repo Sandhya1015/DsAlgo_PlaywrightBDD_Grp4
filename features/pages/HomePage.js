@@ -50,7 +50,7 @@ class HomePage {
     );
   }
 
-  //  LOGIN AS REGISTERED USER ─
+  //  LOGIN AS REGISTERED USER 
 
   async loginAsRegisteredUser() {
     await this.page.goto('/login');
@@ -61,7 +61,7 @@ class HomePage {
     console.log('Logged in as registered user');
   }
 
-  //  DROPDOWN METHODS ─
+  //  DROPDOWN METHODS
 
   async verifyDropdownVisible() {
     await expect(this.dataStructuresDropdown).toBeVisible();
@@ -228,7 +228,7 @@ class HomePage {
     await this.graphCardButton.click();
   }
 
-  //  ERROR MESSAGE METHOD ─
+  //  ERROR MESSAGE METHOD 
 
   async verifyErrorMessage(message) {
     const error = this.page.locator('text=' + message);
