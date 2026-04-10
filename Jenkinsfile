@@ -41,15 +41,11 @@ pipeline {
     }
 
     post {
-        always {
-            archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
-            echo '📊 Allure report archived in Jenkins!'
-        }
-        success {
-            echo '✅ All tests passed!'
-        }
-        failure {
-            echo '❌ Some tests failed!'
-        }
+    always {
+        allure([
+            includeProperties: false,
+            jdk: '',
+            results: [[path: 'allure-results']]
+        ])
     }
 }
