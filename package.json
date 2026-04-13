@@ -1,18 +1,43 @@
 {
-  "name": "dsalgoproject_grp4",
+  "name": "playwright-bdd-cucumber",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
+  "description": "BDD Testing with Playwright + Cucumber.js",
+  "scripts": {
+    "test": "bddgen && playwright test",
+    "test:headed": "bddgen && playwright test --headed",
+    "test:chrome": "bddgen && playwright test --project=chromium",
+    "test:firefox": "bddgen && playwright test --project=firefox",
+    "test:safari": "bddgen && playwright test --project=webkit",
+    "test:report": "playwright show-report",
+    "test:debug": "bddgen && playwright test --debug"
+  },
+  "cucumber": {
+    "default": {
+      "features": "features/**/*.feature",
+      "require": [
+        "features/**/*.js"
+      ],
+      "format": [
+        "progress-bar",
+        "json:reports/cucumber-report.json"
+      ],
+      "formatOptions": {
+        "snippetInterface": "async-await"
+      },
+      "publishQuiet": true
+    }
+  },
   "devDependencies": {
-    "@cucumber/cucumber": "^12.7.0",
+    "@cucumber/cucumber": "^10.3.1",
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.5.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "allure-playwright": "^3.7.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "multiple-cucumber-html-reporter": "^3.7.0",
+    "playwright": "^1.44.0",
+    "playwright-bdd": "^8.5.0"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
   }
 }

@@ -1,0 +1,22 @@
+{
+    "valid": {
+        "username": "svtco",
+        "password": "Nebula12!"
+    },
+    "invalid": {
+        "username": "svtco45",
+        "password": "Invalid123!"
+    },
+    "validUserInvalidPassword": {
+        "username": "svtco",
+        "password": "wrongPass"
+    },
+    "invalidUserValidPassword": {
+        "username": "wrongUser",
+        "password": "Nebula12!"
+    },
+    "empty": {
+    "username": "",
+    "password": ""
+    }
+}

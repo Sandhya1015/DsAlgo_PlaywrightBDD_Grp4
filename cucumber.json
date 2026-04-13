@@ -1,7 +1,7 @@
 {
   "default": {
-    "paths": ["features/*.feature"],
-    "require": ["steps/*.ts"],
+    "paths": ["DsAlgoGrp4/feature/*.feature"],
+    "require": ["DsAlgoGrp4/Steps/*.js"],
     "requireModule": ["ts-node/register"],
     "format": ["progress", "html:reports/cucumber-report.html"]
   }

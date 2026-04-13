@@ -1,0 +1,25 @@
+ALL DATA: [
+  { type: 'valid', username: 'svtco', password: 'Nebula12!' },
+  { type: 'invalid', username: 'svtco45', password: 'Invalid123!' },
+  {
+    type: 'validUserInvalidPassword ',
+    username: 'svtco',
+    password: 'wrongPass'
+  },
+  {
+    type: 'invalidUserValidPassword ',
+    username: 'wrongUser',
+    password: 'Nebula12!'
+  },
+  { type: 'empty' }
+]
+ALL DATA: [
+  { type: 'valid', code: 'print("Hello")', expected: 'Hello' },
+  { type: 'invalid', code: 'print(Hello")', expected: 'error' },
+  { type: 'empty', code: " '", expected: 'alertmessage' }
+]
+ALL DATA: [
+  { type: 'valid', code: 'print("Hello")', expected: 'Hello' },
+  { type: 'invalid', code: 'print(Hello")', expected: 'error' },
+  { type: 'empty', code: " '", expected: 'alertmessage' }
+]
