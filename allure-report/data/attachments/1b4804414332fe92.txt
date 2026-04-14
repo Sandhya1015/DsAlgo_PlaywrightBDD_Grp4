@@ -1,0 +1,15 @@
+ALL DATA: [
+  { type: 'valid', username: 'svtco', password: 'Nebula12!' },
+  { type: 'invalid', username: 'svtco45', password: 'Invalid123!' },
+  {
+    type: 'validUserInvalidPassword ',
+    username: 'svtco',
+    password: 'wrongPass'
+  },
+  {
+    type: 'invalidUserValidPassword ',
+    username: 'wrongUser',
+    password: 'Nebula12!'
+  },
+  { type: 'empty' }
+]

@@ -1,0 +1,60 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - link "NumpyNinja" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e5]:
+      - link "Data Structures" [ref=e8] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=e9]:
+        - link [ref=e10] [cursor=pointer]:
+          - /url: "#"
+        - list [ref=e11]:
+          - link [ref=e12] [cursor=pointer]:
+            - /url: "#"
+          - link "Svtco" [ref=e13] [cursor=pointer]:
+            - /url: ""
+          - link "Sign out" [ref=e14] [cursor=pointer]:
+            - /url: /logout
+  - generic [ref=e15]:
+    - heading "Queue" [level=4] [ref=e16]
+    - paragraph
+    - paragraph [ref=e17]: Queue is very similar to stacks, but the only difference is that a queue is open on both ends. The end at which the deletion of an element takes place is called Front and the other end at which insertion happens is called Rear.
+    - paragraph [ref=e18]: Queue follows First-In-First-Out methodology, i.e., the data item stored first will be accessed first. A real-world example of queue can be a single-lane one-way road, where the vehicle enters first, exits first.
+    - paragraph [ref=e19]:
+      - text: "Few more examples in daily life where we see queue type working could be:"
+      - text: Phone answering system- Person who calls first on your gadget gets attended first.
+      - text: Luggage checking machine– Checks the Luggage that has been kept first on the conveyer belt.
+      - text: Vehicles on the toll-tax bridge– The vehicles arriving early leaves first.
+      - text: Call Centre– phone systems will use Queues, to hold people calling them in order, until a service representative is free.
+      - text: All of these examples follow First-In-Last-Out strategy.
+    - paragraph [ref=e20]: Other examples can also be noted within a computer system where the queue of tasks arranged in the list to perform for the line printer, for accessing the disk storage, or even in the time-sharing system for the use of CPU. So basically queue is used within a single program where there are multiple programs kept in the queue or one task may create other tasks which must have to be executed in turn by keeping them in the queue.
+    - paragraph [ref=e21]: "Now, let’s look at the above points programmatically:"
+    - paragraph [ref=e22]:
+      - text: 1.Queues are open from both ends meaning elements are added from the back and removed from the front
+      - text: 2.The element to be added first is removed first (First In First Out - FIFO)
+      - text: 3.If all the elements are removed, then the queue is empty and if you try to remove elements from an empty queue, a warning or an error message is thrown.
+      - text: 4.If the queue is full and you add more elements to the queue, a warning or error message must be thrown.
+    - paragraph [ref=e23]:
+      - text: "Things to remember:"
+      - text: 1.The point of entry and exit are different in a Queue.
+      - text: 2.Enqueue - Adding an element to a Queue
+      - text: 3.Dequeue - Removing an element from a Queue
+      - text: 4.Random access is not allowed - you cannot add or remove an element from the middle.
+    - paragraph
+    - paragraph [ref=e24]: Topics Covered
+    - list [ref=e25]:
+      - link "Implementation of Queue in Python" [ref=e26] [cursor=pointer]:
+        - /url: implementation-lists
+    - list [ref=e27]:
+      - link "Implementation using collections.deque" [ref=e28] [cursor=pointer]:
+        - /url: implementation-collections
+    - list [ref=e29]:
+      - link "Implementation using array" [ref=e30] [cursor=pointer]:
+        - /url: Implementation-array
+    - list [ref=e31]:
+      - link "Queue Operations" [ref=e32] [cursor=pointer]:
+        - /url: QueueOp
+```
