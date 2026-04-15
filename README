@@ -1,19 +1,2 @@
-// Excel setup for the project
-
-1. npm install
-2. node testdata/createRegisterExcel.js
-3. node testdata/createLoginExcel.js
-4. npx playwright install
-5. npx bddgen
-6. npx playwright test
-
-// Step 1: Run the creation script
-        node testdata/createRegisterExcel.js
-                ↓
-        Creates registerData.xlsx in testdata/ folder
-
-//Step 2: Run your tests
-        npx playwright test "Register"
-                ↓
-        registerData.js opens registerData.xlsx
-        reads the data automatically
+Test data file location: E:\PlayWright\TestData\loginData.xlsx
+Sheets: RegisterData, PythonData
