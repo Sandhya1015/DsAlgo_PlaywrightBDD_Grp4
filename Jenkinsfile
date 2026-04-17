@@ -17,7 +17,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 bat 'npm install'
-                bat 'npx playwright install chromium'
+                bat 'npx playwright install'
             }
         }
 
@@ -27,9 +27,21 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+        stage('Run Tests - Chromium') {
             steps {
-                bat 'npx playwright test --project=chromium --grep-invert @bug'
+                bat 'npx playwright test --project=chromium'
+            }
+        }
+
+        stage('Run Tests - Firefox') {
+            steps {
+                bat 'npx playwright test --project=firefox'
+            }
+        }
+
+        stage('Run Tests - WebKit') {
+            steps {
+                bat 'npx playwright test --project=webkit'
             }
         }
 
@@ -41,12 +53,15 @@ pipeline {
     }
 
     post {
-    always {
-        allure([
-            includeProperties: false,
-            jdk: '',
-            results: [[path: 'allure-results']]
-        ])
+        always {
+            archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
+            echo ' Allure report archived in Jenkins!'
+        }
+        success {
+            echo ' All tests passed!'
+        }
+        failure {
+            echo 'Some tests failed!'
+        }
     }
-}
 }
