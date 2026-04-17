@@ -1,7 +1,7 @@
 const { createBdd }         = require('playwright-bdd');
 const { Given, When, Then } = createBdd();
 const { RegisterPage }      = require('../pages/RegisterPage');
-const { getRegisterData } = require('../../testdata/registerData');
+const { getDataByType } = require('../utils/excelreader');
 
 
 //  Background 
@@ -39,7 +39,10 @@ Then('Register button should be in enabled state', async function ({ page }) {
 
 When('User registers with data from excel row {string}',
   async function ({ page }, rowKey) {
-    let { username, password, confirmPassword } = getRegisterData(rowKey);
+    const row            = getDataByType('RegisterData', rowKey);
+  let username         = row.username;
+  let password         = row.password;
+  let confirmPassword  = row.confirmPassword;
 
     if (rowKey === 'valid_registration') {
       username = 'testuser_' + Date.now() + '@test.com';
@@ -64,7 +67,8 @@ Then('User should see form validation message', async function ({ page }) {
 
 Then('User should see error from excel row {string}', async function ({ page }, rowKey) {
   // Read expected result from Excel
-  const { expectedResult } = getRegisterData(rowKey);
+  const row            = getDataByType('RegisterData', rowKey);
+const expectedResult = row.expectedResult;
   console.log('Expected error: ' + expectedResult);
   await this.registerPage.verifyErrorContains(expectedResult);
 });

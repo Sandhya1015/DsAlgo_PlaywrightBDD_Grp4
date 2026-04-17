@@ -1,117 +1,52 @@
 const { expect } = require('@playwright/test');
-
 class LoginPage {
-  constructor(page) {
-    this.page = page;
+    constructor(page) {
+        this.page = page;
+        this.signinLink = 'a[href="/login"]';
+        this.usernameInput = '#id_username';
+        this.passwordInput = '#id_password';
+        this.loginButton = 'input[type="submit"]';
+        this.successmessage = 'text=You are logged in';
+        this.errormessage = 'text=Invalid Username and Password';
+        this.requirefieldmessage = 'text=please fill out this field';
+    }
 
-    //  Locators 
-    this.usernameInput = page.locator('input[name="username"]');
-    this.passwordInput = page.locator('input[name="password"]');
-    this.loginButton   = page.locator('input[type="submit"]');
-   this.signUpLink = page.locator('a[href="/register"]:has-text("Register!")');
-    this.signOutLink   = page.locator('a[href="/logout"]:has-text("Sign out")');
-    this.errorMessage  = page.locator('.alert, .alert-danger');
-  }
+    async launchapp() {
+        await this.page.goto('/');
+        await this.page.getByRole('button', { name: 'Get Started' }).click();
+    }
 
-  //  NAVIGATION 
+    async clickSignIn() {
+        await this.page.click(this.signinLink);
+    }
 
-  // Background - navigate to login page
-  async navToLoginPage() {
-    await this.page.goto('/login');
-  }
+    async enterCredentials(username, password) {
+        await this.page.fill(this.usernameInput, username);
+        await this.page.fill(this.passwordInput, password);
+    }
 
-  //  NON FUNCTIONAL METHODS 
+    async clickLogin() {
+        await this.page.click(this.loginButton);
+    }
 
-  // Verify login page loaded
-  async verifyLoginPage() {
-    await expect(this.page).toHaveURL(
-      'https://dsportalapp.herokuapp.com/login'
-    );
-  }
+    async verifyLoginSuccess() {
+        await this.page.waitForSelector(this.successmessage);
+    }
+     async verifyLoginError() {
+        await this.page.waitForSelector(this.errormessage);
+    }
 
-  // Verify username field visible
-  async verifyUsernameField() {
-    await expect(this.usernameInput).toBeVisible();
-  }
-
-  // Verify password field visible
-  async verifyPasswordField() {
-    await expect(this.passwordInput).toBeVisible();
-  }
-
-  // Verify login button visible
-  async verifyLoginButton() {
-    await expect(this.loginButton).toBeVisible();
-  }
-
-  // Verify login button enabled
-  async verifyLoginButtonEnabled() {
-    await expect(this.loginButton).toBeEnabled();
-  }
-
-  // Verify sign up link visible
-  async verifySignUpLink() {
-    await expect(this.signUpLink).toBeVisible();
-  }
-
-  //  FUNCTIONAL METHODS 
-
-  // Enter username
-  async enterUsername(username) {
-    await this.usernameInput.fill(username);
-  }
-
-  // Enter password
-  async enterPassword(password) {
-    await this.passwordInput.fill(password);
-  }
-
-  // Click login button
-  async clickLoginButton() {
-    await this.loginButton.click();
-  }
-
-  // Click sign out
-  async clickSignOut() {
-    await this.signOutLink.click();
-  }
-
-  //  ASSERTION METHODS ─
-
-  // Verify successful login - redirected to home
-  async verifySuccessfulLogin() {
-    await this.page.waitForURL('**/home', { timeout: 15000 });
-    await expect(this.page).toHaveURL(
-      'https://dsportalapp.herokuapp.com/home'
-    );
-  }
-
-  // Verify invalid credentials error
-  async verifyInvalidCredentialsError() {
-    await expect(this.errorMessage).toBeVisible();
-  }
-
-  // Verify please fill out this field message
-  async verifyFillOutFieldMessage() {
-    // Browser native validation - check username or password is empty
-    const usernameValue = await this.usernameInput.inputValue();
-    const passwordValue = await this.passwordInput.inputValue();
-    // At least one field should be empty
-    expect(
-      usernameValue === '' || passwordValue === ''
-    ).toBe(true);
-  }
-
-  // Verify logged out successfully
-  async verifyLoggedOut() {
-    const bodyText = await this.page.locator('body').innerText();
-    expect(
-      bodyText.includes('Logged out') ||
-      bodyText.includes('logged out') ||
-      bodyText.includes('successfully')
-    ).toBe(true);
-  }
-
+async verifyEmptyFieldError() {
+  const userValid = await this.page.locator(this.usernameInput).evaluate(
+    el => el.validity.valueMissing
+  );
+  const passValid = await this.page.locator(this.passwordInput).evaluate(
+    el => el.validity.valueMissing
+  );
+  expect(userValid).toBe(true);
+  expect(passValid).toBe(true);
+}
 }
 
-module.exports = { LoginPage };
+
+module.exports = LoginPage;

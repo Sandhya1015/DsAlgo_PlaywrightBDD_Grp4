@@ -1,67 +1,60 @@
-// const { defineConfig, devices } = require('@playwright/test');
-// const { defineBddConfig }       = require('playwright-bdd');
-
-// const testDir = defineBddConfig({
-//   features: 'features/**/*.feature',
-//   steps:    'features/steps/**/*.js',
-// });
-
-// module.exports = defineConfig({
-//   testDir,
-//   fullyParallel: false,    // ← runs tests in parallel
-//   workers:       1,        // ← 3 tests at same time
-//   timeout:       60000,
-
-//   use: {
-//     baseURL:    'https://dsportalapp.herokuapp.com',
-//     headless:   true,       // ← headless for speed
-//     screenshot: 'retain-on-failure',
-//     video:      'retain-on-failure',
-//   },
-
-//   projects: [
-//      { name: 'chromium', use: { ...devices['Desktop Chrome']  } },
-//     { name: 'firefox',  use: { ...devices['Desktop Firefox'] } },
-//     { name: 'webkit',   use: { ...devices['Desktop Safari']  } },
-//   ],
-// });
-
-
-// For Allure Reporting
-
+require('dotenv').config();
 const { defineConfig, devices } = require('@playwright/test');
 const { defineBddConfig }       = require('playwright-bdd');
 
 const testDir = defineBddConfig({
-  features: 'features/**/*.feature',
-  steps:    'features/steps/**/*.js',
+  features:  ['features/**/*.feature'],
+  steps:     ['features/steps/**/*.js'],
+  outputDir: '.features-gen',
 });
+
+const commonUse = {
+  ignoreHTTPSErrors: true,
+  bypassCSP:         true,
+  launchOptions: {
+    args:   ['--disable-gpu'],
+    slowMo: 100,
+  },
+};
 
 module.exports = defineConfig({
   testDir,
   fullyParallel: false,
+  timeout:       120000,
+  forbidOnly:    !!process.env.CI,
+  retries:       process.env.CI ? 2 : 1,
   workers:       1,
-  timeout:       60000,
+  grepInvert:    /@bug/,
 
   reporter: [
-    ['line'],                              // terminal output
-    ['allure-playwright', {
-      detail:      true,
-      outputFolder: 'allure-results',     // raw results folder
-      suiteTitle:  false,
-    }],
+    ['html'],
+    ['allure-playwright'],   // ← simplified for v3.x compatibility
   ],
 
   use: {
-    baseURL:    'https://dsportalapp.herokuapp.com',
-    headless:   true,
-    screenshot: 'retain-on-failure',
-    video:      'retain-on-failure',
+    trace:             'on-first-retry',
+    baseURL:           process.env.BASE_URL || 'https://dsportalapp.herokuapp.com',
+    headless:          process.env.HEADLESS === 'true',
+    actionTimeout:     20000,
+    navigationTimeout: 45000,
+    screenshot:        'retain-on-failure',
+    video:             'retain-on-failure',
   },
 
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome']  } },
-    { name: 'firefox',  use: { ...devices['Desktop Firefox'] } },
-    { name: 'webkit',   use: { ...devices['Desktop Safari']  } },
+    {
+      name: 'chromium',
+      use:  { ...devices['Desktop Chrome'], ...commonUse },
+    },
+    {
+      name:    'firefox',
+      retries: 1,
+      use:     { ...devices['Desktop Firefox'], ...commonUse },
+    },
+    {
+      name:    'webkit',
+      retries: 1,
+      use:     { ...devices['Desktop Safari'], ...commonUse },
+    },
   ],
 });

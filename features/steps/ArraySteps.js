@@ -1,17 +1,18 @@
-
 // features/steps/Arraysteps.js
 const { createBdd }         = require('playwright-bdd');
 const { Given, When, Then } = createBdd();
 const { expect }            = require('@playwright/test');
 const { ArrayPage }         = require('../pages/ArrayPage');
-const { getLoginData }      = require('../../testdata/loginData');
-const { getPythonData }     = require('../../testdata/pythonData');
+//const { getLoginData }      = require('../../testdata/loginData');
+const { getDataByType }     = require('../utils/excelreader');   // ← CHANGED
 
 //  Background Steps 
 
 Given('User is logged in and on Home page', async function ({ page }) {
   this.arrayPage = new ArrayPage(page);
-  const { username, password } = getLoginData('valid_credentials');
+  const row      = getDataByType('LoginData', 'valid_credentials');
+const username = row.username;
+const password = row.password;
   console.log(`\n Logging in as: ${username}`);
   await page.goto('/login');
   await page.waitForLoadState('domcontentloaded');
@@ -139,7 +140,7 @@ Then('User should be back on the Practice page', async function ({ page }) {
   await this.arrayPage.verifyBackOnPracticePage();
 });
 
-//  Editor Steps — Excel Data Driven ─
+//  Editor Steps — Excel Data Driven 
 
 When('User clicks RUN button without entering any data', async function ({ page }) {
   await this.arrayPage.clickRunWithoutData();
@@ -153,24 +154,36 @@ Then('An error message should appear in the editor', async function ({ page }) {
   await this.arrayPage.verifyEditorErrorMessage();
 });
 
-When('User enters python code from excel row {string} and clicks RUN', async function ({ page }, rowKey) {
-  const { code } = getPythonData(rowKey);
-  console.log(`\n Python code loaded — row: ${rowKey}`);
-  await this.arrayPage.enterCodeAndRun(code);
-});
+// ── CHANGED: now uses excelreader.js + external loginData.xlsx ────────────────
 
-When('User enters python code from excel row {string} and clicks SUBMIT', async function ({ page }, rowKey) {
-  const { code } = getPythonData(rowKey);
-  console.log(`\n Python code loaded — row: ${rowKey}`);
-  await this.arrayPage.enterCodeAndSubmit(code);
-});
+When('User enters python code from excel row {string} and clicks RUN',
+  async function ({ page }, rowKey) {
+    const row  = getDataByType('PythonData', rowKey);
+    const code = row.Code;
+    await this.arrayPage.enterCodeAndRun(code);
+  }
+);
 
-Then('User should see the expected output from excel row {string}', async function ({ page }, rowKey) {
-  const { expectedOutput } = getPythonData(rowKey);
-  await this.arrayPage.verifyOutputContains(expectedOutput);
-});
+When('User enters python code from excel row {string} and clicks SUBMIT',
+  async function ({ page }, rowKey) {
+    const row = getDataByType('PythonData', rowKey);
+    const code = row.Code;
+    console.log(`\n Python code loaded — row: ${rowKey}`);
+    await this.arrayPage.enterCodeAndSubmit(code);
+  }
+);
 
-//  Arrays Using List Steps ─
+Then('User should see the expected output from excel row {string}',
+  async function ({ page }, rowKey) {
+    const row = getDataByType('PythonData', rowKey);
+    const expectedOutput = row.ExpectedOutput;
+    await this.arrayPage.verifyOutputContains(expectedOutput);
+  }
+);
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+//  Arrays Using List Steps 
 
 When('User clicks Arrays Using List link on Array page', async function ({ page }) {
   this.arrayPage = this.arrayPage || new ArrayPage(page);
@@ -319,11 +332,3 @@ When('User clicks Sign out from Practice page', async function ({ page }) {
 Then('User should be redirected to Home page with logged out message', async function ({ page }) {
   await this.arrayPage.verifySignedOut();
 });
-
-
-
-
-
-
-
-

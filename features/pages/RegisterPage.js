@@ -18,7 +18,7 @@ class RegisterPage {
     await this.page.goto('/register');
   }
 
-  //  NON FUNCTIONAL METHODS ─
+  //  NON FUNCTIONAL METHODS 
 
   async verifyRegisterPage() {
     await expect(this.page).toHaveURL(
@@ -75,6 +75,9 @@ class RegisterPage {
 
   // Verify browser native form validation message
   async verifyFormValidationMessage() {
+
+  await this.page.locator('body').waitFor({ state: 'visible', timeout: 15000 });
+  await this.page.waitForTimeout(1000);
     // Check at least one field is empty
     const usernameValue        = await this.usernameInput.inputValue();
     const passwordValue        = await this.passwordInput.inputValue();

@@ -1,151 +1,146 @@
-// features/steps/Queuesteps.js
-const { createBdd }         = require('playwright-bdd');
+const { createBdd } = require('playwright-bdd');
 const { Given, When, Then } = createBdd();
-const { expect }            = require('@playwright/test');
-const { QueuePage }         = require('../pages/QueuePage');
-const { getLoginData }      = require('../../testdata/loginData');
-const { getQueueData }      = require('../../testdata/queueData');
+const { getDataByType } = require('../utils/excelreader');
+//const { getLoginData }      = require('../../testdata/loginData');
+const QueuePage = require('../pages/QueuePage');
 
-// Background
+let queuePage;
 
-Given('User is logged in and on Queue page', async function ({ page }) {
-  this.queuePage = new QueuePage(page);
-  const { username, password } = getLoginData('valid_credentials');
-  console.log(`\n Logging in as: ${username}`);
-  await page.goto('/login');
-  await page.waitForLoadState('domcontentloaded');
-  await page.locator('input[name="username"]').fill(username);
-  await page.locator('input[name="password"]').fill(password);
-  await page.locator('input[type="submit"]').click();
-  await page.waitForURL('**/home', { timeout: 15000 });
-  console.log(' Logged in — navigating to Queue page');
-  await this.queuePage.navToQueuePage();
+//  Click Queue Get Started
+When('user clicks on Queue Get Started button', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.clickQueueGetStarted();
 });
 
-// Non Functional Steps
-
-Then('The user should be able to land on Queue page', async function ({ page }) {
-  await this.queuePage.verifyOnQueuePage();
+Then('user should be redirected to Queue page', async ({ page }) => {
+  await queuePage.verifyQueuePage();
 });
 
-Then('The user should be able to see Implementation of Queue in Python link', async function ({ page }) {
-  await this.queuePage.verifyLinkVisible('Implementation of Queue in Python');
+//  Navigate to Queue Page
+Given('user is on Queue page', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToQueuePage();
 });
 
-Then('The user should be able to see Implementation using collections.deque link', async function ({ page }) {
-  await this.queuePage.verifyLinkVisible('Implementation using collections.deque');
+//  Generic Click for ALL links
+When('user clicks {string}', async ({ page }, linkName) => {
+  queuePage = new QueuePage(page);
+  await queuePage.clickImplementationLink(linkName);
 });
 
-Then('The user should be able to see Implementation using array link', async function ({ page }) {
-  await this.queuePage.verifyLinkVisible('Implementation using array');
+When('user clicks on {string}', async ({ page }, linkName) => {
+  queuePage = new QueuePage(page);
+  await queuePage.clickImplementationLink(linkName);
 });
 
-Then('The user should be able to see Queue Operations link', async function ({ page }) {
-  await this.queuePage.verifyLinkVisible('Queue Operations');
+//  Implementation (Python)
+Then('user should be navigated to Implementation of Queue in Python page', async ({ page }) => {
+  await queuePage.verifyImplementationPage();
 });
 
-Then('The user should be able to see Practice Questions link on Queue page', async function ({ page }) {
-  await this.queuePage.verifyLinkVisible('Practice Questions');
+Given('user is on Implementation of Queue in Python page', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToImplementationPage('Implementation of Queue in Python');
 });
 
-// Sub Page Navigation
-
-When('User clicks on Implementation of Queue in Python link', async function ({ page }) {
-  await this.queuePage.clickImplPythonLink();
+//  Deque Page
+Then('user should be redirected to Implementation using collections.deque page.', async ({ page }) => {
+  await queuePage.verifyImplementationPage();
+});
+Given('user is on Implementation using collections.deque page', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToImplementationPage('Implementation using collections.deque');
+});
+//  Array Page
+Then('user should be navigated to Implementation using array page', async ({ page }) => {
+  await queuePage.verifyImplementationPage();
 });
 
-Then('The user should land on Implementation of Queue in Python page', async function ({ page }) {
-  await this.queuePage.verifyOnSubPage('Implementation of Queue in Python');
+Given('user is on Implementation using array page', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToImplementationPage('Implementation using array');
 });
 
-When('User clicks on Implementation using collections.deque link', async function ({ page }) {
-  await this.queuePage.clickImplDequeLink();
+//  Queue Operations
+Then('user should be redirected to Queue Operations page.', async ({ page }) => {
+  await queuePage.verifyImplementationPage();
 });
 
-Then('The user should land on Implementation using collections.deque page', async function ({ page }) {
-  await this.queuePage.verifyOnSubPage('collections.deque');
+Given('user is on Queue Operations page', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToImplementationPage('Queue Operations');
 });
 
-When('User clicks on Implementation using array link', async function ({ page }) {
-  await this.queuePage.clickImplArrayLink();
+// Practice Questions
+Then('user should be redirected to practice questions page', async ({ page }) => {
+  await queuePage.verifyPracticeQuestionsPage();
 });
 
-Then('The user should land on Implementation using array page', async function ({ page }) {
-  await this.queuePage.verifyOnSubPage('Implementation using array');
+//  Try Editor (COMMON)
+When('user clicks Try Here button', async ({ page }) => {
+  await queuePage.clickTryHere();
 });
 
-When('User clicks on Queue Operations link', async function ({ page }) {
-  await this.queuePage.clickQueueOpsLink();
+Then('user should be navigated to try editor page', async ({ page }) => {
+  await queuePage.verifyTryEditorPage();
 });
 
-Then('The user should land on Queue Operations page', async function ({ page }) {
-  await this.queuePage.verifyOnSubPage('Queue Operations');
+//  Try Editor Navigation (Python)
+Given('user is on try editor page for Queue Implementation', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToTryEditor('Implementation of Queue in Python');
 });
 
-When('User clicks on Practice Questions link on Queue page', async function ({ page }) {
-  await this.queuePage.clickPracticeLink();
+//  Try Editor Navigation (Deque)
+Given('user is on try editor page for Queue Implementation using collections.deque', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToTryEditor('Implementation using collections.deque');
 });
 
-Then('The user should land on Queue Practice Questions page', async function ({ page }) {
-  await this.queuePage.verifyOnPracticePage();
+//  Try Editor Navigation (Array)
+Given('user is on try editor page for Queue Implementation using array', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToTryEditor('Implementation using array');
 });
 
-// Try Here / Editor
-
-Then('The user should be able to see Try here link', async function ({ page }) {
-  await this.queuePage.verifyTryHereLinkVisible();
+//  Try Editor Navigation (Queue Operations)
+Given('user is on try editor page for Queue Queue Operations', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToTryEditor('Queue Operations');
 });
 
-When('User clicks on Try here link on Queue page', async function ({ page }) {
-  await this.queuePage.clickTryHereLink();
+//  Run Code
+When('user runs python code of type {string}', async ({ page }, type) => {
+  const data = getDataByType('Python', type);
+
+  if (!data) {
+    throw new Error(`Invalid Python data: ${type}`);
+  }
+   await queuePage.runCode(data.code, type);
+
 });
 
-// UNIQUE Queue step names to avoid clash with Array steps
+//  Validate Output / Error
+Then('user should see output for {string}', async ({ page }, type) => {
+  const data = getDataByType('Python', type);
+if (type === 'valid') {
+    await queuePage.verifyOutput(data.expected);
+  }
 
-Then('The user should be able to land on Queue Editor page', async function ({ page }) {
-  await this.queuePage.verifyOnEditorPage();
 });
 
-When('User clicks RUN button without entering any data on Queue page', async function ({ page }) {
-  await this.queuePage.clickRunWithoutData();
+//  Generic Try Editor (for back navigation)
+Given('user is on try editor page', async ({ page }) => {
+  queuePage = new QueuePage(page);
+  await queuePage.navigateToTryEditor('Implementation of Queue in Python');
 });
 
-Then('An error message should appear in the Queue editor', async function ({ page }) {
-  await this.queuePage.verifyEditorErrorMessage();
+//  Browser Back
+When('user clicks browser back button', async ({ page }) => {
+  await page.goBack();
+  await page.locator('body').waitFor({ state: 'visible', timeout: 15000 });
 });
 
-When('User clicks the back arrow on Queue page', async function ({ page }) {
-  await this.queuePage.clickBackArrow();
-});
-
-Then('User should be back on the Queue sub page', async function ({ page }) {
-  await this.queuePage.verifyBackOnQueueSubPage();
-});
-
-// Editor Steps — Excel Data Driven
-
-When('User enters queue python code from excel row {string} and clicks RUN',
-  async function ({ page }, rowKey) {
-    const { code, expectedOutput } = getQueueData(rowKey);
-    console.log(`\n Queue code loaded — row: ${rowKey}`);
-    await this.queuePage.enterCodeAndRun(code, expectedOutput);
-  }
-);
-
-Then('User should see the expected queue output from excel row {string}',
-  async function ({ page }, rowKey) {
-    const { expectedOutput } = getQueueData(rowKey);
-    console.log(`Expected output: ${expectedOutput}`);
-    await this.queuePage.verifyOutputContains(expectedOutput);
-  }
-);
-
-//  Sign Out 
-
-When('User clicks Sign out from Queue page', async function ({ page }) {
-  await this.queuePage.clickSignOut();
-});
-
-Then('User should be signed out successfully', async function ({ page }) {
-  await this.queuePage.verifySignedOut();
+Then('user should be navigated back to Queue page', async ({ page }) => {
+  await queuePage.verifyQueuePage();
 });

@@ -17,3 +17,9 @@ allure-report/
 
 # Generated feature files
 .features-gen/
+
+# Test data
+  E:\PlayWright\TestData\ 
+testdata/*.xlsx
+
+  

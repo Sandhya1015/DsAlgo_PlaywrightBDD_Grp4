@@ -34,8 +34,8 @@ Feature: Register Page
 
   @register @functional @positive
   Scenario: Verify valid registration is successful
-    When User registers with data from excel row "valid_registration"
-    Then User should be redirected to Home page after registration
+  When User registers with data from excel row "valid_registration"
+  Then User should be redirected to Home page after registration
 
   # FUNCTIONAL - NEGATIVE
 
