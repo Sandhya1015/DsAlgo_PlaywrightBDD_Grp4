@@ -2,15 +2,15 @@
 Feature: Array Module
   As a logged in user of DSAlgo portal
   I want to verify the Array module functionality
-  So that I can learn about Arrays
+  
 
-  # BACKGROUND: Login and navigate to Array page
+ // BACKGROUND: Login and navigate to Array page
   Background:
     Given User is logged in and on Home page
     When User clicks Get Started button under Array on Home page
     Then The user should be able to land on the Array page
 
-  # ARRAY PAGE - NON FUNCTIONAL
+  // ARRAY PAGE - NON FUNCTIONAL
 
   @array @nonfunctional @smoke @integration
   Scenario: Verify Array page loads successfully
@@ -40,7 +40,7 @@ Feature: Array Module
   Scenario: Verify Applications of Array link is present
     Then The user should be able to see Applications of Array link
 
-  # ARRAYS IN PYTHON - NON FUNCTIONAL
+// ARRAYS IN PYTHON - NON FUNCTIONAL
 
   @array @arrayinpython @nonfunctional @smoke
   Scenario: Verify Arrays in Python link navigates to correct page
@@ -77,7 +77,7 @@ Feature: Array Module
     When User clicks Arrays in Python link on Array page
     Then The user should be able to see Try here link at the bottom
 
-  # ARRAYS IN PYTHON - FUNCTIONAL 
+  // ARRAYS IN PYTHON - FUNCTIONAL 
 
   @array @arrayinpython @functional
   Scenario: Verify Try here link is highlighted on hover
@@ -140,7 +140,7 @@ Feature: Array Module
     And User clicks the back arrow to return to previous page
     Then User should be back on the Arrays in Python page
 
-  # ARRAYS USING LIST - FUNCTIONAL
+  // ARRAYS USING LIST - FUNCTIONAL
 
   @array @arrayusinglist @functional @smoke
   Scenario: Verify Arrays Using List link navigates to correct page
@@ -180,7 +180,7 @@ Feature: Array Module
     And User clicks the back arrow to return to previous page
     Then User should be back on the Arrays Using List page
 
-  # BASIC OPERATIONS IN LISTS - NON FUNCTIONAL
+  // BASIC OPERATIONS IN LISTS - NON FUNCTIONAL
 
   @array @basicops @nonfunctional @smoke
   Scenario: Verify Basic Operations in Lists link navigates to correct page
@@ -232,7 +232,7 @@ Feature: Array Module
     When User clicks Basic Operations in Lists link on Array page
     Then The user should be able to see Try here link on Basic Operations page
 
-  # BASIC OPERATIONS IN LISTS - FUNCTIONAL
+  // BASIC OPERATIONS IN LISTS - FUNCTIONAL
 
   @array @basicops @functional
   Scenario: Verify Try here link is highlighted on hover on Basic Operations page
@@ -267,7 +267,7 @@ Feature: Array Module
     And User clicks the back arrow to return to previous page
     Then User should be back on the Basic Operations in Lists page
 
-  # APPLICATIONS OF ARRAY - NON FUNCTIONAL
+  // APPLICATIONS OF ARRAY - NON FUNCTIONAL
   
   @array @applications @nonfunctional @smoke
   Scenario: Verify Applications of Array link navigates to correct page
@@ -284,7 +284,7 @@ Feature: Array Module
     When User clicks Applications of Array link on Array page
     Then The user should be able to see Try here link on Applications page
 
-  # APPLICATIONS OF ARRAY - FUNCTIONAL
+  // APPLICATIONS OF ARRAY - FUNCTIONAL
   
   @array @applications @functional
   Scenario: Verify Try here link is highlighted on hover on Applications page
@@ -319,7 +319,7 @@ Feature: Array Module
     And User clicks the back arrow to return to previous page
     Then User should be back on the Applications of Array page
   
-  # PRACTICE QUESTIONS - NON FUNCTIONAL
+  // PRACTICE QUESTIONS - NON FUNCTIONAL
 
   @array @practice @nonfunctional @smoke
   Scenario: Verify Practice Questions link navigates to Practice page
@@ -357,7 +357,7 @@ Feature: Array Module
     And User clicks Practice Questions link
     Then The user should be able to see Squares of a Sorted Array link
   
-  # PRACTICE QUESTIONS - FUNCTIONAL - Question 1
+   PRACTICE QUESTIONS - FUNCTIONAL - Question 1
   @array @practice @functional @smoke
   Scenario: Verify Search the Array link navigates to Question 1 page
     When User clicks Arrays in Python link on Array page
@@ -420,7 +420,7 @@ Feature: Array Module
     Then User should be back on the Practice page
 
   
-  # PRACTICE QUESTIONS - FUNCTIONAL - Question 2
+   //PRACTICE QUESTIONS - FUNCTIONAL - Question 2
 
   @array @practice @functional @smoke
   Scenario: Verify Max Consecutive Ones link navigates to Question 2 page
@@ -484,7 +484,7 @@ Feature: Array Module
     Then User should be back on the Practice page
 
   
-  # PRACTICE QUESTIONS - FUNCTIONAL - Question 3
+  // PRACTICE QUESTIONS - FUNCTIONAL - Question 3
   
   @array @practice @functional @smoke
   Scenario: Verify Find Numbers with Even Digits link navigates to Question 3 page
@@ -548,7 +548,7 @@ Feature: Array Module
     Then User should be back on the Practice page
 
   
-  # PRACTICE QUESTIONS - FUNCTIONAL - Question 4
+  // PRACTICE QUESTIONS - FUNCTIONAL - Question 4
 
   @array @practice @functional @smoke
   Scenario: Verify Squares of a Sorted Array link navigates to Question 4 page
@@ -611,7 +611,7 @@ Feature: Array Module
     And User clicks the back arrow to return to previous page
     Then User should be back on the Practice page
 
-  # FUNCTIONAL - Sign Out from Practice page
+  // FUNCTIONAL - Sign Out from Practice page
 
   @array @functional @signout @smoke @integration
   Scenario: Verify user can sign out successfully from Array Practice page

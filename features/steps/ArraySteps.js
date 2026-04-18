@@ -181,8 +181,6 @@ Then('User should see the expected output from excel row {string}',
   }
 );
 
-// ─────────────────────────────────────────────────────────────────────────────
-
 //  Arrays Using List Steps 
 
 When('User clicks Arrays Using List link on Array page', async function ({ page }) {

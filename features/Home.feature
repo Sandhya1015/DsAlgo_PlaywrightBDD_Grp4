@@ -4,7 +4,7 @@ Feature: Home Page
   Background:
     Given User is on Home page
 
-  # NON FUNCTIONAL - UI
+  // NON FUNCTIONAL - UI
 
   @home @ui
   Scenario: Verify User lands on Home Page
@@ -77,7 +77,7 @@ Feature: Home Page
     And User should see Get Started button in Graph card
     And Get Started button should be enabled in Graph card
 
-  # FUNCTIONAL - UNREGISTERED
+  // FUNCTIONAL - UNREGISTERED
 
   @home @functional @unregistered
   Scenario: Verify error when unregistered user clicks Data Structures Introduction card
@@ -114,7 +114,7 @@ Feature: Home Page
     When Unregistered user clicks Get Started button in Graph card
     Then User should see error message "You are not logged in"
 
-  # FUNCTIONAL - REGISTERED
+  // FUNCTIONAL - REGISTERED
 
   @home @functional @registered
   Scenario: Verify Registered user accesses Data Structures Introduction page

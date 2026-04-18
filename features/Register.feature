@@ -4,7 +4,7 @@ Feature: Register Page
   Background:
     Given User is on Register page
 
-  # NON FUNCTIONAL - UI
+  // NON FUNCTIONAL - UI
 
   @register @ui
   Scenario: Verify user lands on Register page
@@ -30,14 +30,14 @@ Feature: Register Page
   Scenario: Verify Register button is enabled
     Then Register button should be in enabled state
 
-  # FUNCTIONAL - POSITIVE
+  // FUNCTIONAL - POSITIVE
 
   @register @functional @positive
   Scenario: Verify valid registration is successful
   When User registers with data from excel row "valid_registration"
   Then User should be redirected to Home page after registration
 
-  # FUNCTIONAL - NEGATIVE
+  // FUNCTIONAL - NEGATIVE
 
   @register @functional @negative
   Scenario: Verify registration fails with empty username
