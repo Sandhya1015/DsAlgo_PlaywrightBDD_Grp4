@@ -3,8 +3,7 @@ const { createBdd }         = require('playwright-bdd');
 const { Given, When, Then } = createBdd();
 const { expect }            = require('@playwright/test');
 const { ArrayPage }         = require('../pages/ArrayPage');
-//const { getLoginData }      = require('../../testdata/loginData');
-const { getDataByType }     = require('../utils/excelreader');   // ← CHANGED
+const { getDataByType }     = require('../utils/excelreader'); 
 
 //  Background Steps 
 
@@ -15,7 +14,7 @@ const username = row.username;
 const password = row.password;
   console.log(`\n Logging in as: ${username}`);
   await page.goto('/login');
-  await page.waitForLoadState('domcontentloaded');
+  await page.locator('body').waitFor({ state: 'visible', timeout: 15000 });
   await page.locator('input[name="username"]').fill(username);
   await page.locator('input[name="password"]').fill(password);
   await page.locator('input[type="submit"]').click();
@@ -26,7 +25,7 @@ const password = row.password;
 When('User clicks Get Started button under Array on Home page', async function ({ page }) {
   this.arrayPage = this.arrayPage || new ArrayPage(page);
   await page.goto('/array');
-  await page.waitForLoadState('domcontentloaded');
+  await page.locator('body').waitFor({ state: 'visible', timeout: 15000 });
 });
 
 Then('The user should be able to land on the Array page', async function ({ page }) {
@@ -154,7 +153,7 @@ Then('An error message should appear in the editor', async function ({ page }) {
   await this.arrayPage.verifyEditorErrorMessage();
 });
 
-// ── CHANGED: now uses excelreader.js + external loginData.xlsx ────────────────
+// uses excelreader.js + external loginData.xlsx 
 
 When('User enters python code from excel row {string} and clicks RUN',
   async function ({ page }, rowKey) {

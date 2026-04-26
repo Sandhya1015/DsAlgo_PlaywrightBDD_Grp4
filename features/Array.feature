@@ -1,7 +1,7 @@
 
 Feature: Array Module
   As a logged in user of DSAlgo portal
-  I want to verify the Array module functionality
+  Verify the Array module functionality
   
 
  // BACKGROUND: Login and navigate to Array page
