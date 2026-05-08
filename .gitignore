@@ -1,10 +1,17 @@
 
-# Playwright
+# Dependencies
 node_modules/
+# Test results
 /test-results/
 /playwright-report/
 /blob-report/
+# Playwright cache/auth
 /playwright/.cache/
 /playwright/.auth/
+# Allure reports
 allure-results/
 allure-report/
+# Environment variables
+.env
+# Test data  
+test-data/*.xlsx
