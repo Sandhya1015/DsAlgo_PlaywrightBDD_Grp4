@@ -1,25 +1,17 @@
+
 # Dependencies
 node_modules/
-
-# Generated spec files
-.features-gen/
-
 # Test results
-test-results/
-playwright-report/
-
-# Environment variables
-.env
-
+/test-results/
+/playwright-report/
+/blob-report/
+# Playwright cache/auth
+/playwright/.cache/
+/playwright/.auth/
 # Allure reports
 allure-results/
 allure-report/
-
-# Generated feature files
-.features-gen/
-
-# Test data
-  E:\PlayWright\TestData\ 
-testdata/*.xlsx
-
-  
+# Environment variables
+.env
+# Test data  
+test-data/*.xlsx
