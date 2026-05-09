@@ -1,6 +1,6 @@
 const { createBdd } = require('playwright-bdd');
 const { getDataByType } = require('../utils/excelreader');
-//const { getLoginData }      = require('../../testdata/loginData');
+#const { getLoginData }      = require('../../testdata/loginData');
 const { Given, When, Then } = createBdd();
 
 const LoginPage  = require('../pages/LoginPage');

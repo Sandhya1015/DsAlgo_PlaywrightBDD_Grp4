@@ -1,14 +1,14 @@
-// BeforeAll → runs once → "Framework ready"
-//     ↓
-// Before   → runs before EACH scenario → "Starting: scenario name"
-//     ↓
-//   Scenario runs...
-//     ↓
-// After    → runs after EACH scenario → "PASSED/FAILED: scenario name"
-//     ↓
-// AfterAll → runs once → "All tests completed"
+# BeforeAll → runs once → "Framework ready"
+#     ↓
+# Before   → runs before EACH scenario → "Starting: scenario name"
+#     ↓
+#   Scenario runs...
+#     ↓
+# After    → runs after EACH scenario → "PASSED/FAILED: scenario name"
+#     ↓
+# AfterAll → runs once → "All tests completed"
 
-// features/hooks/hooks.js
+# features/hooks/hooks.js
 const { Before, After, BeforeAll, AfterAll } = require('playwright-bdd');
 
 BeforeAll(async function () {

@@ -1,11 +1,11 @@
-// features/steps/Arraysteps.js
+# features/steps/Arraysteps.js
 const { createBdd }         = require('playwright-bdd');
 const { Given, When, Then } = createBdd();
 const { expect }            = require('@playwright/test');
 const { ArrayPage }         = require('../pages/ArrayPage');
 const { getDataByType }     = require('../utils/excelreader'); 
 
-//  Background Steps 
+#  Background Steps 
 
 Given('User is logged in and on Home page', async function ({ page }) {
   this.arrayPage = new ArrayPage(page);
@@ -33,7 +33,7 @@ Then('The user should be able to land on the Array page', async function ({ page
   await this.arrayPage.verifyOnArrayPage();
 });
 
-//  Array Page Non-Functional Steps 
+#  Array Page Non-Functional Steps 
 
 Then('The user should be able to see the Title {string} on top left corner', async function ({ page }, title) {
   await this.arrayPage.verifyArrayTitle(title);
@@ -59,7 +59,7 @@ Then('The user should be able to see Applications of Array link', async function
   await this.arrayPage.verifyLinkVisible('Applications of Array');
 });
 
-//  Arrays in Python Steps 
+#  Arrays in Python Steps 
 
 When('User clicks Arrays in Python link on Array page', async function ({ page }) {
   this.arrayPage = this.arrayPage || new ArrayPage(page);
@@ -95,7 +95,7 @@ Then('The user should be able to see Try here link at the bottom', async functio
   await this.arrayPage.verifyTryHereLinkVisible();
 });
 
-//  Try here Steps 
+#  Try here Steps 
 
 When('User hovers on Try here link', async function ({ page }) {
   await this.arrayPage.hoverTryHereLink();
@@ -113,7 +113,7 @@ Then('The user should be able to land on Editor page', async function ({ page })
   await this.arrayPage.verifyOnEditorPage();
 });
 
-//  Back Arrow Steps 
+#  Back Arrow Steps 
 
 When('User clicks the back arrow to return to previous page', async function ({ page }) {
   await this.arrayPage.clickBackArrow();
@@ -139,7 +139,7 @@ Then('User should be back on the Practice page', async function ({ page }) {
   await this.arrayPage.verifyBackOnPracticePage();
 });
 
-//  Editor Steps — Excel Data Driven 
+#  Editor Steps — Excel Data Driven 
 
 When('User clicks RUN button without entering any data', async function ({ page }) {
   await this.arrayPage.clickRunWithoutData();
@@ -153,7 +153,7 @@ Then('An error message should appear in the editor', async function ({ page }) {
   await this.arrayPage.verifyEditorErrorMessage();
 });
 
-// uses excelreader.js + external loginData.xlsx 
+# uses excelreader.js + external loginData.xlsx 
 
 When('User enters python code from excel row {string} and clicks RUN',
   async function ({ page }, rowKey) {
@@ -180,7 +180,7 @@ Then('User should see the expected output from excel row {string}',
   }
 );
 
-//  Arrays Using List Steps 
+#  Arrays Using List Steps 
 
 When('User clicks Arrays Using List link on Array page', async function ({ page }) {
   this.arrayPage = this.arrayPage || new ArrayPage(page);
@@ -191,7 +191,7 @@ Then('The user should be able to land on Arrays Using List page', async function
   await this.arrayPage.verifyOnArraysUsingListPage();
 });
 
-//  Basic Operations Steps 
+#  Basic Operations Steps 
 
 When('User clicks Basic Operations in Lists link on Array page', async function ({ page }) {
   this.arrayPage = this.arrayPage || new ArrayPage(page);
@@ -234,7 +234,7 @@ Then('The user should be able to see Try here link on Basic Operations page', as
   await this.arrayPage.verifyTryHereLinkVisible();
 });
 
-//  Applications Steps 
+#  Applications Steps 
 
 When('User clicks Applications of Array link on Array page', async function ({ page }) {
   this.arrayPage = this.arrayPage || new ArrayPage(page);
@@ -249,7 +249,7 @@ Then('The user should be able to see Try here link on Applications page', async 
   await this.arrayPage.verifyTryHereLinkVisible();
 });
 
-//  Practice Questions Steps 
+#  Practice Questions Steps 
 
 When('User clicks Practice Questions link', async function ({ page }) {
   await this.arrayPage.clickPracticeQuestionsLink();
@@ -320,7 +320,7 @@ Then('The user should be able to land on Question 4 page', async function ({ pag
   await this.arrayPage.verifyOnPracticePage();
 });
 
-//  Sign Out from Practice Page 
+#  Sign Out from Practice Page 
 
 When('User clicks Sign out from Practice page', async function ({ page }) {
   await this.arrayPage.clickSignOut();

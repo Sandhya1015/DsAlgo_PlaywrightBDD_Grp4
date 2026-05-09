@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/Sandhya1015/DsAlgo_PlaywrightBDD_Grp4.git'
+                    url: 'https:#github.com/Sandhya1015/DsAlgo_PlaywrightBDD_Grp4.git'
             }
         }
 

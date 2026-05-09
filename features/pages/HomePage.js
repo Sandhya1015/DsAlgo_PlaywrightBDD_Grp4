@@ -4,7 +4,7 @@ class HomePage {
   constructor(page) {
     this.page = page;
 
-    //  Navigation Locators 
+    #  Navigation Locators 
     this.dataStructuresDropdown = page.locator('a.nav-link.dropdown-toggle');
     this.arraysLink             = page.locator('a.dropdown-item[href="/array"]');
     this.linkedListLink         = page.locator('a.dropdown-item[href="/linked-list"]');
@@ -16,7 +16,7 @@ class HomePage {
     this.registerLink           = page.locator('a[href="/register"]:has-text("Register")');
     this.signInLink             = page.locator('a[href="/login"]:has-text("Sign in")');
 
-    //  Card Title Locators 
+    #  Card Title Locators 
     this.dsCardTitle         = page.locator('h5.card-title:has-text("Data Structures-Introduction")');
     this.arrayCardTitle      = page.locator('h5.card-title:has-text("Array")');
     this.linkedListCardTitle = page.locator('h5.card-title:has-text("Linked List")');
@@ -25,7 +25,7 @@ class HomePage {
     this.treeCardTitle       = page.locator('h5.card-title:has-text("Tree")');
     this.graphCardTitle      = page.locator('h5.card-title:has-text("Graph")');
 
-    //  Card Button Locators ─
+    #  Card Button Locators ─
     this.dsCardButton         = page.locator('a[href="data-structures-introduction"]:has-text("Get Started")');
     this.arrayCardButton      = page.locator('a[href="array"]:has-text("Get Started")');
     this.linkedListCardButton = page.locator('a[href="linked-list"]:has-text("Get Started")');
@@ -34,11 +34,11 @@ class HomePage {
     this.treeCardButton       = page.locator('a[href="tree"]:has-text("Get Started")');
     this.graphCardButton      = page.locator('a[href="graph"]:has-text("Get Started")');
 
-    //  Error Message Locator 
+    #  Error Message Locator 
     this.errorMessage = page.locator('.alert, .alert-danger');
   }
 
-  //  NAVIGATION METHODS ─
+  #  NAVIGATION METHODS ─
 
   async navToHomePage() {
     await this.page.goto('/home');
@@ -46,11 +46,11 @@ class HomePage {
 
   async verifyHomePage() {
     await expect(this.page).toHaveURL(
-      'https://dsportalapp.herokuapp.com/home'
+      'https:#dsportalapp.herokuapp.com/home'
     );
   }
 
-  //  LOGIN AS REGISTERED USER 
+  #  LOGIN AS REGISTERED USER 
 
   async loginAsRegisteredUser() {
     await this.page.goto('/login');
@@ -61,7 +61,7 @@ class HomePage {
     console.log('Logged in as registered user');
   }
 
-  //  DROPDOWN METHODS
+  #  DROPDOWN METHODS
 
   async verifyDropdownVisible() {
     await expect(this.dataStructuresDropdown).toBeVisible();
@@ -72,7 +72,7 @@ class HomePage {
     expect(count).toBe(6);
   }
 
-  // Click dropdown first then verify each option
+  # Click dropdown first then verify each option
   async verifyArraysOption() {
     await this.dataStructuresDropdown.click();
     await expect(this.arraysLink).toBeVisible();
@@ -98,7 +98,7 @@ class HomePage {
     await expect(this.graphLink).toBeVisible();
   }
 
-  //  NAV LINK METHODS ─
+  #  NAV LINK METHODS ─
 
   async verifyRegisterLink() {
     await expect(this.registerLink).toBeVisible();
@@ -108,7 +108,7 @@ class HomePage {
     await expect(this.signInLink).toBeVisible();
   }
 
-  //  CARD TITLE METHODS ─
+  #  CARD TITLE METHODS ─
 
   async verifyDsCardTitle() {
     await expect(this.dsCardTitle).toBeVisible();
@@ -138,7 +138,7 @@ class HomePage {
     await expect(this.graphCardTitle).toBeVisible();
   }
 
-  //  CARD BUTTON VISIBLE METHODS 
+  #  CARD BUTTON VISIBLE METHODS 
 
   async verifyDsCardButtonVisible() {
     await expect(this.dsCardButton).toBeVisible();
@@ -168,7 +168,7 @@ class HomePage {
     await expect(this.graphCardButton).toBeVisible();
   }
 
-  //  CARD BUTTON ENABLED METHODS 
+  #  CARD BUTTON ENABLED METHODS 
 
   async verifyDsCardButtonEnabled() {
     await expect(this.dsCardButton).toBeEnabled();
@@ -198,7 +198,7 @@ class HomePage {
     await expect(this.graphCardButton).toBeEnabled();
   }
 
-  //  CARD BUTTON CLICK METHODS 
+  #  CARD BUTTON CLICK METHODS 
 
   async clickDsCardButton() {
     await this.dsCardButton.click();
@@ -228,14 +228,14 @@ class HomePage {
     await this.graphCardButton.click();
   }
 
-  //  ERROR MESSAGE METHOD 
+  #  ERROR MESSAGE METHOD 
 
   async verifyErrorMessage(message) {
     const error = this.page.locator('text=' + message);
     await expect(error).toBeVisible();
   }
 
-  //  PAGE NAVIGATION VERIFY METHODS 
+  #  PAGE NAVIGATION VERIFY METHODS 
 
   async verifyDsIntroductionPage() {
     await expect(this.page).toHaveURL(/data-structures-introduction/);

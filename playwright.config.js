@@ -28,12 +28,12 @@ module.exports = defineConfig({
 
   reporter: [
     ['html'],
-    ['allure-playwright'],   // ← simplified for v3.x compatibility
+    ['allure-playwright'],   # ← simplified for v3.x compatibility
   ],
 
   use: {
     trace:             'on-first-retry',
-    baseURL:           process.env.BASE_URL || 'https://dsportalapp.herokuapp.com',
+    baseURL:           process.env.BASE_URL || 'https:#dsportalapp.herokuapp.com',
     headless:          process.env.HEADLESS === 'true',
     actionTimeout:     20000,
     navigationTimeout: 45000,

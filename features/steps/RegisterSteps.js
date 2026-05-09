@@ -4,14 +4,14 @@ const { RegisterPage }      = require('../pages/RegisterPage');
 const { getDataByType } = require('../utils/excelreader');
 
 
-//  Background 
+#  Background 
 
 Given('User is on Register page', async function ({ page }) {
   this.registerPage = new RegisterPage(page);
   await this.registerPage.navToRegisterPage();
 });
 
-//  Non Functional Steps 
+#  Non Functional Steps 
 
 Then('User should be able to land on Register page', async function ({ page }) {
   await this.registerPage.verifyRegisterPage();
@@ -55,7 +55,7 @@ When('User registers with data from excel row {string}',
   }
 );
 
-//  Functional Steps - Assertions 
+#  Functional Steps - Assertions 
 
 Then('User should be redirected to Home page after registration', async function ({ page }) {
   await this.registerPage.verifySuccessfulRegistration();
@@ -66,7 +66,7 @@ Then('User should see form validation message', async function ({ page }) {
 });
 
 Then('User should see error from excel row {string}', async function ({ page }, rowKey) {
-  // Read expected result from Excel
+  # Read expected result from Excel
   const row            = getDataByType('RegisterData', rowKey);
 const expectedResult = row.expectedResult;
   console.log('Expected error: ' + expectedResult);

@@ -2,20 +2,20 @@ const { createBdd }         = require('playwright-bdd');
 const { Given, When, Then } = createBdd();
 const { HomePage }          = require('../pages/HomePage');
 
-//  Background
+#  Background
 
 Given('User is on Home page', async function ({ page }) {
   this.homePage = new HomePage(page);
   await this.homePage.navToHomePage();
 });
 
-//  Non Functional - Page Load 
+#  Non Functional - Page Load 
 
 Then('User should be able to land on Home page', async function ({ page }) {
   await this.homePage.verifyHomePage();
 });
 
-//  Non Functional - Dropdown
+#  Non Functional - Dropdown
 
 Then('User should see Data Structures dropdown in Home page', async function ({ page }) {
   await this.homePage.verifyDropdownVisible();
@@ -49,7 +49,7 @@ Then('User should see Graph option in dropdown', async function ({ page }) {
   await this.homePage.verifyGraphOption();
 });
 
-//  Non Functional - Nav Links 
+#  Non Functional - Nav Links 
 
 Then('User should see Register link in Home page', async function ({ page }) {
   await this.homePage.verifyRegisterLink();
@@ -59,7 +59,7 @@ Then('User should see Sign In link in Home page', async function ({ page }) {
   await this.homePage.verifySignInLink();
 });
 
-//  Non Functional - Card Titles 
+#  Non Functional - Card Titles 
 
 Then('User should see Data Structures Introduction card text in Home page', async function ({ page }) {
   await this.homePage.verifyDsCardTitle();
@@ -89,7 +89,7 @@ Then('User should see Graph card text in Home page', async function ({ page }) {
   await this.homePage.verifyGraphCardTitle();
 });
 
-//  Non Functional - Card Buttons Visible 
+#  Non Functional - Card Buttons Visible 
 
 Then('User should see Get Started button in Data Structures Introduction card', async function ({ page }) {
   await this.homePage.verifyDsCardButtonVisible();
@@ -119,7 +119,7 @@ Then('User should see Get Started button in Graph card', async function ({ page 
   await this.homePage.verifyGraphCardButtonVisible();
 });
 
-//  Non Functional - Card Buttons Enabled 
+#  Non Functional - Card Buttons Enabled 
 
 Then('Get Started button should be enabled in Data Structures Introduction card', async function ({ page }) {
   await this.homePage.verifyDsCardButtonEnabled();
@@ -149,7 +149,7 @@ Then('Get Started button should be enabled in Graph card', async function ({ pag
   await this.homePage.verifyGraphCardButtonEnabled();
 });
 
-//  Functional - Unregistered - Click Card Buttons 
+#  Functional - Unregistered - Click Card Buttons 
 
 When('Unregistered user clicks Get Started button in Data Structures Introduction card', async function ({ page }) {
   await this.homePage.clickDsCardButton();
@@ -179,13 +179,13 @@ When('Unregistered user clicks Get Started button in Graph card', async function
   await this.homePage.clickGraphCardButton();
 });
 
-//  Functional - Error Message
+#  Functional - Error Message
 
 Then('User should see error message {string}', async function ({ page }, message) {
   await this.homePage.verifyErrorMessage(message);
 });
 
-//  Functional - Registered - Login and Click 
+#  Functional - Registered - Login and Click 
 
 When('Registered user clicks Get Started button in Data Structures Introduction card', async function ({ page }) {
   await this.homePage.loginAsRegisteredUser();
@@ -222,7 +222,7 @@ When('Registered user clicks Get Started button in Graph card', async function (
   await this.homePage.clickGraphCardButton();
 });
 
-//  Functional - Registered - Navigation Verification 
+#  Functional - Registered - Navigation Verification 
 
 Then('User should land on Data Structures Introduction page', async function ({ page }) {
   await this.homePage.verifyDsIntroductionPage();

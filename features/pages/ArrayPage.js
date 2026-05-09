@@ -1,11 +1,11 @@
-// features/pages/ArrayPage.js
+# features/pages/ArrayPage.js
 const { expect } = require('@playwright/test');
 
 class ArrayPage {
   constructor(page) {
     this.page = page;
 
-    //  Array Page Locators
+    #  Array Page Locators
     this.topicsCoveredTitle    = page.locator('text=Topics Covered').first();
     this.arraysInPythonLink    = page.locator('a:has-text("Arrays in Python")').first();
     this.arraysUsingListLink   = page.locator('a:has-text("Arrays Using List")').first();
@@ -14,22 +14,22 @@ class ArrayPage {
     this.practiceQuestionsLink = page.locator('a:has-text("Practice Questions")').first();
     this.tryHereLink           = page.locator('a:has-text("Try here")').first();
 
-    //  Practice Page Locators
+    #  Practice Page Locators
     this.searchArrayLink    = page.locator('a:has-text("Search the Array"), a:has-text("Search the array")').first();
     this.maxConsecutiveLink = page.locator('a:has-text("Max Consecutive")').first();
     this.findEvenDigitsLink = page.locator('a:has-text("Find Numbers with Even"), a:has-text("Find numbers with even")').first();
     this.squaredArrayLink   = page.locator('a:has-text("Squares of a Sorted"), a:has-text("Sqares of a sorted")').first();
 
-    //  Editor Locators
+    #  Editor Locators
     this.codeMirrorEditor = page.locator('.CodeMirror').first();
     this.runButton        = page.locator('button:has-text("Run"), input[value="Run"], #run').first();
-   // this.submitButton     = page.locator('button:has-text("Submit"), input[value="Submit"], #submit').first();
+   # this.submitButton     = page.locator('button:has-text("Submit"), input[value="Submit"], #submit').first();
     this.submitButton = page.locator('button:has-text("Submit"), input[value="Submit"], #submit, input[type="submit"]').first();
-    //  Sign Out
+    #  Sign Out
     this.signOutLink = page.locator('a[href="/logout"], a:has-text("Sign out")').first();
   }
 
-  //  Navigation
+  #  Navigation
 
   async clickArraysInPythonLink() {
     await this.arraysInPythonLink.waitFor({ state: 'visible', timeout: 10000 });
@@ -109,7 +109,7 @@ class ArrayPage {
     await this.page.locator('body').waitFor({ state: 'visible', timeout: 15000 });
   }
 
-  //  Editor Actions
+  #  Editor Actions
 
   async enterCodeAndRun(code) {
   
@@ -117,7 +117,7 @@ class ArrayPage {
     await this.codeMirrorEditor.click();
     await this.page.keyboard.press('Control+A');
     await this.page.keyboard.type(code);
-    // Wait for Run button — most reliable for Firefox
+    # Wait for Run button — most reliable for Firefox
     await this.page.locator('button:has-text("Run")').waitFor({ state: 'visible', timeout: 15000 });
     await this.runButton.click();
     await this.page.waitForTimeout(3000);
@@ -129,27 +129,27 @@ class ArrayPage {
     await this.codeMirrorEditor.click();
     await this.page.keyboard.press('Control+A');
     await this.page.keyboard.type(code);
-    // Wait for Submit button — most reliable for Firefox
+    # Wait for Submit button — most reliable for Firefox
     await this.page.locator('button:has-text("Submit")').waitFor({ state: 'visible', timeout: 15000 });
     await this.submitButton.click();
     await this.page.waitForTimeout(3000);
   }
 
   async clickRunWithoutData() {
-    // Wait for Run button — most reliable for Firefox
+    # Wait for Run button — most reliable for Firefox
     await this.page.locator('button:has-text("Run")').waitFor({ state: 'visible', timeout: 15000 });
     await this.runButton.click();
     await this.page.waitForTimeout(3000);
   }
 
   async clickSubmitWithoutData() {
-    // Wait for Submit button — most reliable for Firefox
+    # Wait for Submit button — most reliable for Firefox
     await this.page.locator('button:has-text("Submit")').waitFor({ state: 'visible', timeout: 15000 });
     await this.submitButton.click();
     await this.page.waitForTimeout(3000);
   }
 
-  //  Assertions
+  #  Assertions
 
   async verifyOnArrayPage() {
     await this.page.locator('body').waitFor({ state: 'visible', timeout: 15000 });
@@ -271,7 +271,7 @@ class ArrayPage {
     
   }
 
-  //  Back arrow verifications
+  #  Back arrow verifications
   async verifyBackOnArraysInPythonPage() {
     await this.page.locator('body').waitFor({ state: 'visible', timeout: 15000 });
     const url = this.page.url();

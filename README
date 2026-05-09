@@ -1,4 +1,4 @@
-// Execution Commands
+# Execution Commands
 
 npm test              # chromium
 npm run test:all      # all browsers
